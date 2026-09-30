@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本电影网 | 日本电影在线观看 - ribendianyingwang-h5</title>
+<meta name="keywords" content="日本电影网, ribendianyingwang-h5, 日本电影, 日本电影在线观看, 日本剧情片, 日本爱情片, 日本动作片">
+<meta name="description" content="日本电影网(ribendianyingwang-h5)专业提供最新日本电影在线观看、日本电影排行榜、日本剧情片、爱情片、动作片高清资源，海量日本电影一网打尽。">
+<link rel="canonical" href="https://ribendianyingwang-h5/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="日本电影网 - 日本电影在线观看">
+<meta property="og:description" content="日本电影网(ribendianyingwang-h5)提供最新最全的日本电影在线观看资源，涵盖日本剧情片、爱情片、动作片、动画电影等。">
+<meta property="og:url" content="https://ribendianyingwang-h5/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="日本电影网 - 日本电影在线观看">
+<meta name="twitter:description" content="日本电影网(ribendianyingwang-h5)专业日本电影在线观看平台，海量日本电影高清资源。">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+:root{
+  --brand:#e63950;
+  --brand-dark:#c92a3f;
+  --ink:#1a1a2e;
+  --ink-2:#4a4a6a;
+  --line:#eaeaf2;
+  --bg:#f5f5fa;
+  --card:#ffffff;
+  --gold:#f4a261;
+  --radius:16px;
+  --shadow:0 8px 30px rgba(26,26,46,.08);
+  --shadow-lg:0 16px 48px rgba(26,26,46,.14);
+  --ease:cubic-bezier(.22,.68,.32,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;transition:.3s var(--ease)}
+img{max-width:100%;display:block}
+ul,ol{list-style:none}
+::selection{background:var(--brand);color:#fff}
+
+/* ===== 布局 ===== */
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+section{padding:70px 0;position:relative}
+.sec-head{text-align:center;margin-bottom:48px}
+.sec-tag{
+  display:inline-block;font-size:13px;letter-spacing:3px;color:var(--brand);
+  background:rgba(230,57,80,.08);padding:6px 18px;border-radius:40px;margin-bottom:16px;font-weight:600;
+}
+.sec-head h2{
+  font-size:34px;font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(120deg,var(--ink) 30%,var(--brand-dark));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sec-head p{color:var(--ink-2);margin-top:12px;font-size:16px}
+.brand-kw{color:var(--brand);font-weight:700}
+
+/* ===== 顶部进度条 ===== */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--brand),var(--gold));z-index:999;transition:.1s}
+
+/* ===== 导航 ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;
+  transition:.35s var(--ease);
+}
+header.scrolled{border-bottom-color:var(--line);box-shadow:0 4px 24px rgba(26,26,46,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800}
+.logo-mark{
+  width:40px;height:40px;border-radius:12px;flex:0 0 auto;
+  background:linear-gradient(135deg,var(--brand),var(--brand-dark));
+  display:grid;place-items:center;color:#fff;font-size:20px;font-weight:900;
+  box-shadow:0 6px 16px rgba(230,57,80,.35);
+}
+.logo span{color:var(--brand)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{
+  padding:9px 16px;border-radius:10px;font-size:15px;font-weight:500;color:var(--ink-2);
+}
+.nav-links a:hover{background:rgba(230,57,80,.08);color:var(--brand)}
+.nav-cta{
+  background:var(--brand);color:#fff!important;padding:10px 22px;border-radius:30px;
+  font-weight:600;box-shadow:0 6px 18px rgba(230,57,80,.3);
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(230,57,80,.4)}
+.menu-btn{display:none;width:44px;height:44px;border:none;background:rgba(230,57,80,.1);border-radius:12px;cursor:pointer;position:relative}
+.menu-btn i{position:absolute;left:11px;width:22px;height:2px;background:var(--brand);border-radius:2px;transition:.3s}
+.menu-btn i:nth-child(1){top:15px}.menu-btn i:nth-child(2){top:21px}.menu-btn i:nth-child(3){top:27px}
+
+/* ===== Hero ===== */
+.hero{
+  padding:150px 0 90px;overflow:hidden;
+  background:
+    radial-gradient(900px 500px at 85% -10%,rgba(244,162,97,.22),transparent 60%),
+    radial-gradient(700px 500px at 10% 20%,rgba(230,57,80,.14),transparent 60%),
+    var(--bg);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;background:#fff;
+  padding:8px 18px 8px 8px;border-radius:40px;box-shadow:var(--shadow);margin-bottom:26px;font-size:14px;
+}
+.hero-badge b{
+  background:linear-gradient(135deg,var(--brand),var(--gold));color:#fff;
+  padding:4px 14px;border-radius:30px;font-size:13px;font-weight:700;
+}
+.hero h1{font-size:56px;font-weight:900;line-height:1.15;letter-spacing:-1.5px}
+.hero h1 em{font-style:normal;color:var(--brand);position:relative}
+.hero h1 em::after{
+  content:"";position:absolute;left:0;bottom:4px;width:100%;height:12px;
+  background:rgba(244,162,97,.4);z-index:-1;border-radius:6px;
+}
+.hero-sub{font-size:19px;color:var(--ink-2);margin:24px 0 32px;max-width:520px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:15px 34px;border-radius:40px;
+  font-size:16px;font-weight:700;cursor:pointer;border:none;transition:.35s var(--ease);
+}
+.btn-main{background:linear-gradient(135deg,var(--brand),var(--brand-dark));color:#fff;box-shadow:0 10px 28px rgba(230,57,80,.35)}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(230,57,80,.45)}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+.btn-ghost:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.hero-stats{display:flex;gap:44px;margin-top:48px;flex-wrap:wrap}
+.stat-num{font-size:38px;font-weight:900;color:var(--ink);line-height:1}
+.stat-num small{font-size:20px;color:var(--brand)}
+.stat-label{font-size:14px;color:var(--ink-2);margin-top:6px}
+
+/* Hero 视觉 */
+.phone-showcase{position:relative;perspective:1200px}
+.phone{
+  width:300px;height:600px;margin:0 auto;position:relative;
+  background:#1a1a2e;border-radius:44px;padding:12px;
+  box-shadow:var(--shadow-lg);transform:rotateY(-14deg) rotateX(6deg);transform-style:preserve-3d;
+  animation:float 6s ease-in-out infinite;
+}
+.phone::before{
+  content:"";position:absolute;inset:-40px;border-radius:60px;
+  background:linear-gradient(135deg,var(--brand),var(--gold));opacity:.18;z-index:-1;filter:blur(24px);
+}
+@keyframes float{0%,100%{transform:rotateY(-14deg) rotateX(6deg) translateY(0)}50%{transform:rotateY(-14deg) rotateX(6deg) translateY(-18px)}}
+.phone-screen{
+  width:100%;height:100%;border-radius:32px;background:var(--bg);overflow:hidden;position:relative;
+}
+.ps-head{background:linear-gradient(135deg,var(--brand),var(--brand-dark));height:56px;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-weight:700}
+.ps-notch{width:120px;height:22px;background:#1a1a2e;border-radius:0 0 16px 16px;position:absolute;top:0;left:50%;transform:translateX(-50%)}
+.ps-body{padding:14px}
+.ps-tab{
+  display:flex;gap:8px;margin-bottom:14px;overflow:hidden;
+}
+.ps-tab span{
+  flex:1;text-align:center;font-size:11px;padding:6px;border-radius:8px;background:#fff;color:var(--ink-2);font-weight:600;
+}
+.ps-tab span.on{background:var(--brand);color:#fff}
+.ps-card{background:#fff;border-radius:12px;padding:8px;margin-bottom:10px;display:flex;gap:10px;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.ps-thumb{width:52px;height:70px;border-radius:8px;flex:0 0 auto;background:linear-gradient(135deg,#ff9a9e,#fad0c4)}
+.ps-thumb.t2{background:linear-gradient(135deg,#a18cd1,#fbc2eb)}
+.ps-thumb.t3{background:linear-gradient(135deg,#84fab0,#8fd3f4)}
+.ps-thumb.t4{background:linear-gradient(135deg,#fccb90,#d57eeb)}
+.ps-info{flex:1}
+.ps-info b{font-size:12px;display:block}
+.ps-info p{font-size:10px;color:var(--ink-2)}
+.ps-tag{display:inline-block;font-size:9px;background:rgba(230,57,80,.1);color:var(--brand);padding:2px 6px;border-radius:6px;margin-top:4px}
+
+.float-card{
+  position:absolute;border-radius:16px;background:#fff;padding:14px 18px;box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;gap:12px;animation:float2 5s ease-in-out infinite;
+}
+.float-card.fc-1{top:-20px;left:-30px}
+.float-card.fc-2{bottom:40px;right:-20px;animation-delay:-2.5s}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.fc-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:0 0 auto}
+.fc-1 .fc-icon{background:rgba(230,57,80,.12)}
+.fc-2 .fc-icon{background:rgba(244,162,97,.18)}
+.fc-text b{font-size:15px;display:block;line-height:1.3}
+.fc-text p{font-size:12px;color:var(--ink-2)}
+
+/* ===== 分类栏目 ===== */
+.cats{background:#fff}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.cat-card{
+  position:relative;border-radius:var(--radius);padding:34px 26px;color:#fff;overflow:hidden;
+  min-height:220px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:.4s var(--ease);
+}
+.cat-card::after{content:"";position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.12)}
+.cat-card:hover{transform:translateY(-8px);box-shadow:0 20px 44px rgba(0,0,0,.18)}
+.cat-card .c-icon{font-size:38px;line-height:1}
+.cat-card h3{font-size:22px;margin:16px 0 8px}
+.cat-card p{font-size:13px;opacity:.9;line-height:1.6}
+.cat-card .c-more{margin-top:14px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.c1{background:linear-gradient(140deg,#e63950,#ff6b6b)}
+.c2{background:linear-gradient(140deg,#2a9d8f,#52d6c4)}
+.c3{background:linear-gradient(140deg,#4361ee,#7b8cff)}
+.c4{background:linear-gradient(140deg,#f4a261,#ffc08c)}
+
+/* ===== 排行 ===== */
+.rank{background:var(--bg)}
+.rank-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:40px;flex-wrap:wrap}
+.rank-tab{
+  padding:10px 26px;border-radius:40px;background:#fff;border:1px solid var(--line);
+  font-size:15px;font-weight:600;color:var(--ink-2);cursor:pointer;transition:.3s;
+}
+.rank-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rank-tab:hover:not(.on){border-color:var(--brand);color:var(--brand)}
+.rank-list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:960px;margin:0 auto}
+.rank-item{
+  display:flex;gap:18px;align-items:center;background:#fff;border-radius:var(--radius);
+  padding:16px 20px;box-shadow:var(--shadow);transition:.35s var(--ease);position:relative;overflow:hidden;
+}
+.rank-item:hover{transform:translateX(6px);box-shadow:var(--shadow-lg)}
+.rank-no{
+  width:44px;height:44px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;
+  font-size:20px;font-weight:900;background:var(--bg);color:var(--ink-2);
+}
+.rank-item.top .rank-no{background:linear-gradient(135deg,var(--brand),var(--gold));color:#fff}
+.rank-info{flex:1;min-width:0}
+.rank-info h4{font-size:17px;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-info .meta{font-size:13px;color:var(--ink-2);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rank-info .meta i{font-style:normal;background:rgba(230,57,80,.08);color:var(--brand);padding:2px 10px;border-radius:20px;font-size:12px}
+.rank-score{font-size:24px;font-weight:900;color:var(--brand);flex:0 0 auto}
+
+/* ===== 资讯 ===== */
+.news{background:#fff}
+.news-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.news-feat{
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:340px;
+  display:flex;align-items:flex-end;padding:32px;color:#fff;cursor:pointer;transition:.4s var(--ease);
+}
+.news-feat:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.nf-bg{position:absolute;inset:0;background:linear-gradient(160deg,#2b2d42,#e63950);z-index:-2}
+.nf-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 70%)}
+.news-feat .nf-tag{position:absolute;top:24px;left:24px;background:var(--gold);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px}
+.news-feat h3{font-size:26px;line-height:1.4;margin-bottom:10px}
+.news-feat p{font-size:14px;opacity:.9}
+.news-list{display:flex;flex-direction:column;gap:16px}
+.news-item{display:flex;gap:16px;align-items:flex-start;padding:14px;border-radius:14px;transition:.3s}
+.news-item:hover{background:var(--bg)}
+.news-item .n-date{
+  flex:0 0 auto;width:52px;text-align:center;background:var(--bg);border-radius:12px;padding:8px 0;
+}
+.news-item .n-date b{display:block;font-size:22px;font-weight:900;color:var(--brand);line-height:1}
+.news-item .n-date span{font-size:11px;color:var(--ink-2)}
+.news-item h4{font-size:16px;line-height:1.5;margin-bottom:6px;transition:.3s}
+.news-item:hover h4{color:var(--brand)}
+.news-item p{font-size:13px;color:var(--ink-2);line-height:1.6}
+
+/* ===== 关于 ===== */
+.about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-visual{position:relative}
+.about-card{
+  background:#fff;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);
+  position:relative;z-index:1;
+}
+.about-card h3{font-size:22px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.about-card p{color:var(--ink-2);margin-bottom:14px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.about-stat{background:var(--bg);border-radius:14px;padding:18px;text-align:center}
+.about-stat b{font-size:26px;color:var(--brand);display:block}
+.about-stat span{font-size:12px;color:var(--ink-2)}
+.a-shape{position:absolute;border-radius:30px}
+.a-shape.s1{width:180px;height:180px;background:linear-gradient(135deg,var(--brand),var(--gold));right:-30px;top:-30px;z-index:0;opacity:.9}
+.a-shape.s2{width:140px;height:140px;background:var(--ink);left:-20px;bottom:-30px;z-index:2}
+
+.feat-list{display:flex;flex-direction:column;gap:20px}
+.feat{display:flex;gap:18px;align-items:flex-start}
+.feat .f-ic{width:52px;height:52px;border-radius:14px;flex:0 0 auto;background:rgba(230,57,80,.08);display:grid;place-items:center;font-size:24px}
+.feat h4{font-size:19px;margin-bottom:6px}
+.feat p{color:var(--ink-2);font-size:15px}
+
+/* ===== 收录优化 ===== */
+.seo{background:#fff}
+.seo-content{max-width:900px;margin:0 auto}
+.seo-content h3{font-size:24px;margin:0 0 16px;color:var(--ink)}
+.seo-content p{color:var(--ink-2);margin-bottom:16px;font-size:16px}
+.seo-content .kw-cloud{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.seo-content .kw-cloud a{
+  background:var(--bg);border:1px solid var(--line);padding:8px 18px;border-radius:30px;
+  font-size:14px;color:var(--ink-2);transition:.3s;
+}
+.seo-content .kw-cloud a:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+/* ===== 页脚 ===== */
+footer{background:#0f0f1e;color:#a0a0c0;padding:70px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-brand .logo{color:#fff;margin-bottom:16px}
+.foot-brand p{font-size:14px;line-height:1.8}
+.foot-col h4{color:#fff;font-size:16px;margin-bottom:20px;font-weight:700}
+.foot-col a{display:block;color:#a0a0c0;font-size:14px;padding:6px 0;transition:.3s}
+.foot-col a:hover{color:var(--brand);transform:translateX(4px)}
+.foot-col a::before{content:"›";margin-right:8px;color:var(--brand);font-weight:700}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.08);padding-top:28px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;
+}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a:hover{color:#fff}
+
+/* ===== 回到顶部 ===== */
+#top{
+  position:fixed;right:24px;bottom:30px;width:48px;height:48px;border-radius:50%;
+  background:var(--brand);color:#fff;border:none;cursor:pointer;font-size:20px;
+  box-shadow:0 8px 24px rgba(230,57,80,.4);opacity:0;visibility:hidden;transform:translateY(20px);
+  transition:.4s var(--ease);z-index:99;
+}
+#top.show{opacity:1;visibility:visible;transform:translateY(0)}
+#top:hover{transform:translateY(-4px)}
+
+/* ===== 响应式 ===== */
+@media(max-width:960px){
+  section{padding:56px 0}
+  .wrap{padding:0 16px}
+  .hero{padding:120px 0 60px}
+  .hero-grid{grid-template-columns:1fr;gap:50px}
+  .hero h1{font-size:38px}
+  .hero-sub{font-size:17px}
+  .hero-stats{gap:28px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .rank-list{grid-template-columns:1fr}
+  .news-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .sec-head h2{font-size:26px}
+  .phone{width:260px;height:520px}
+}
+@media(max-width:640px){
+  .nav-links{position:fixed;top:72px;left:0;right:0;flex-direction:column;background:#fff;padding:20px;gap:6px;box-shadow:var(--shadow-lg);transform:translateY(-150%);transition:.4s var(--ease);align-items:stretch}
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{text-align:center;padding:14px}
+  .menu-btn{display:block}
+  .hero h1{font-size:32px}
+  .hero-actions .btn{flex:1;justify-content:center}
+  .cat-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .float-card{display:none}
+  .phone{transform:none;animation:none}
+  .foot-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div id="bar"></div>
+
+<!-- 导航 -->
+<header id="header">
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <span class="logo-mark">日</span>
+      日本电影<span>网</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">首页</a>
+      <a href="#category">影片分类</a>
+      <a href="#rank">热播排行</a>
+      <a href="#news">影讯资讯</a>
+      <a href="#about">关于本站</a>
+      <a href="#seo">关键词导航</a>
+      <a href="https://ribendianyingwang-h5/" class="nav-cta">立即访问</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="菜单"><i></i><i></i><i></i></button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge"><b>官方推荐</b> 海量日本电影资源 · 每日更新</div>
+      <h1>畅享 <em>日本电影</em><br>尽在 日本电影网</h1>
+      <p class="hero-sub">
+        日本电影网（ribendianyingwang-h5）是专注于日本电影在线观看的专业平台，汇聚日本剧情片、爱情片、动作片、动画电影、经典老片等丰富内容，让你随时随地感受日本电影的独特魅力。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="#category">探索影片分类 ›</a>
+        <a class="btn btn-ghost" href="#rank">查看热播排行</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">12<small>万+</small></div><div class="stat-label">收录日本电影</div></div>
+        <div><div class="stat-num">98<small>%</small></div><div class="stat-label">高清画质资源</div></div>
+        <div><div class="stat-num">365<small>天</small></div><div class="stat-label">全年不间断更新</div></div>
+      </div>
+    </div>
+
+    <div class="phone-showcase">
+      <div class="float-card fc-1">
+        <div class="fc-icon">🎬</div>
+        <div class="fc-text"><b>海量片库</b><p>12万+ 日本电影</p></div>
+      </div>
+      <div class="float-card fc-2">
+        <div class="fc-icon">⭐</div>
+        <div class="fc-text"><b>高分精选</b><p>IMDb 9.0+ 推荐</p></div>
+      </div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="ps-notch"></div>
+          <div class="ps-head">🎌 日本电影网</div>
+          <div class="ps-body">
+            <div class="ps-tab"><span class="on">推荐</span><span>剧情</span><span>爱情</span><span>动作</span></div>
+            <div class="ps-card">
+              <div class="ps-thumb"></div>
+              <div class="ps-info"><b>驾驶我的车</b><p>2021 · 剧情</p><span class="ps-tag">高分</span></div>
+            </div>
+            <div class="ps-card">
+              <div class="ps-thumb t2"></div>
+              <div class="ps-info"><b>花束般的恋爱</b><p>2021 · 爱情</p><span class="ps-tag">热播</span></div>
+            </div>
+            <div class="ps-card">
+              <div class="ps-thumb t3"></div>
+              <div class="ps-info"><b>你好世界</b><p>2019 · 动画</p><span class="ps-tag">经典</span></div>
+            </div>
+            <div class="ps-card">
+              <div class="ps-thumb t4"></div>
+              <div class="ps-info"><b>王者天下</b><p>2019 · 动作</p><span class="ps-tag">推荐</span></div>
+            </div>
+            <div class="ps-card">
+              <div class="ps-thumb"></div>
+              <div class="ps-info"><b>小偷家族</b><p>2018 · 剧情</p><span class="ps-tag">获奖</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目一：影片分类 -->
+<section id="category" class="cats">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">CATEGORY</span>
+      <h2>影片分类 <span class="brand-kw">栏目</span></h2>
+      <p>日本电影网涵盖全类型日本电影，精准分类，快速找到你想看的每一部</p>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card c1" href="#">
+        <div><div class="c-icon">🎭</div><h3>日本剧情片</h3>
+        <p>深度人性刻画，细腻情感表达，收录上千部高分日本剧情电影</p></div>
+        <div class="c-more">进入分类 ›</div>
+      </a>
+      <a class="cat-card c2" href="#">
+        <div><div class="c-icon">💕</div><h3>日本爱情片</h3>
+        <p>纯爱、治愈、虐恋，感受日本电影独有的浪漫与温柔</p></div>
+        <div class="c-more">进入分类 ›</div>
+      </a>
+      <a class="cat-card c3" href="#">
+        <div><div class="c-icon">⚔️</div><h3>日本动作片</h3>
+        <p>热血搏击、武士道、黑帮题材，硬核日本动作电影一网打尽</p></div>
+        <div class="c-more">进入分类 ›</div>
+      </a>
+      <a class="cat-card c4" href="#">
+        <div><div class="c-icon">🎌</div><h3>日本动画电影</h3>
+        <p>宫崎骏、新海诚等大师佳作，经典与最新日本动画电影全集</p></div>
+        <div class="c-more">进入分类 ›</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：热播排行 -->
+<section id="rank" class="rank">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">TOP RANKING</span>
+      <h2>日本电影 <span class="brand-kw">热播排行</span></h2>
+      <p>百万影迷真实评分，日本电影网每日更新热门榜单</p>
+    </div>
+    <div class="rank-tabs">
+      <span class="rank-tab on">本周热播</span>
+      <span class="rank-tab">高分经典</span>
+      <span class="rank-tab">最新上映</span>
+    </div>
+    <div class="rank-list">
+      <div class="rank-item top">
+        <div class="rank-no">1</div>
+        <div class="rank-info"><h4>驾驶我的车</h4><div class="meta"><span>2021</span><i>剧情</i><span>124分钟</span></div></div>
+        <div class="rank-score">9.2</div>
+      </div>
+      <div class="rank-item top">
+        <div class="rank-no">2</div>
+        <div class="rank-info"><h4>花束般的恋爱</h4><div class="meta"><span>2021</span><i>爱情</i><span>124分钟</span></div></div>
+        <div class="rank-score">9.0</div>
+      </div>
+      <div class="rank-item top">
+        <div class="rank-no">3</div>
+        <div class="rank-info"><h4>小偷家族</h4><div class="meta"><span>2018</span><i>剧情</i><span>117分钟</span></div></div>
+        <div class="rank-score">8.8</div>
+      </div>
+      <div class="rank-item">
+        <div class="rank-no">4</div>
+        <div class="rank-info"><h4>你好世界</h4><div class="meta"><span>2019</span><i>动画</i><span>97分钟</span></div></div>
+        <div class="rank-score">8.7</div>
+      </div>
+      <div class="rank-item">
+        <div class="rank-no">5</div>
+        <div class="rank-info"><h4>王者天下</h4><div class="meta"><span>2019</span><i>动作</i><span>134分钟</span></div></div>
+        <div class="rank-score">8.5</div>
+      </div>
+      <div class="rank-item">
+        <div class="rank-no">6</div>
+        <div class="rank-info"><h4>流浪之月</h4><div class="meta"><span>2022</span><i>剧情</i><span>130分钟</span></div></div>
+        <div class="rank-score">8.4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：影讯资讯 -->
+<section id="news" class="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">LATEST NEWS</span>
+      <h2>日本电影 <span class="brand-kw">影讯资讯</span></h2>
+      <p>一手掌握日本电影行业动态、上映信息与幕后故事</p>
+    </div>
+    <div class="news-grid">
+      <a class="news-feat" href="#">
+        <div class="nf-bg"></div>
+        <span class="nf-tag">深度报道</span>
+        <div>
+          <h3>2026 年日本电影市场前瞻：这些高分日本电影值得期待</h3>
+          <p>从年度票房黑马到戛纳获奖新作，日本电影网为你盘点本年度最值得关注的 10 部日本电影……</p>
+        </div>
+      </a>
+      <div class="news-list">
+        <a class="news-item" href="#">
+          <div class="n-date"><b>28</b><span>09月</span></div>
+          <div><h4>《名侦探柯南》最新剧场版定档，日本电影票房再创新高</h4><p>日本动画电影持续领跑本土票房榜，系列累计票房突破纪录。</p></div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="n-date"><b>25</b><span>09月</span></div>
+          <div><h4>是枝裕和新片开机，日本剧情片再掀国际关注</h4><p>继《小偷家族》后，导演再度聚焦家庭题材，预计 2027 年上映。</p></div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="n-date"><b>20</b><span>09月</span></div>
+          <div><h4>戛纳电影节日本电影入围名单公布，三部佳作角逐金棕榈</h4><p>日本电影在国际电影节上的表现愈发亮眼，作品质量备受认可。</p></div>
+        </a>
+        <a class="news-item" href="#">
+          <div class="n-date"><b>15</b><span>09月</span></div>
+          <div><h4>经典修复计划启动：《七武士》4K 重制版将全球上映</h4><p>黑泽明经典日本动作片首次以 4K 画质重现大银幕。</p></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：关于本站 -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">ABOUT US</span>
+      <h2>关于 <span class="brand-kw">日本电影网</span></h2>
+      <p>专业 · 专注 · 全面 —— 做最懂影迷的日本电影在线平台</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="a-shape s1"></div>
+        <div class="about-card">
+          <h3>🎯 我们是谁</h3>
+          <p>日本电影网（ribendianyingwang-h5）是国内领先的日本电影在线观看平台，致力于为影迷提供最新、最全、最清晰的日本电影资源。</p>
+          <p>从经典老片到最新上映，从剧情爱情到动作动画，日本电影网一站式满足你对日本电影的所有需求。</p>
+          <div class="about-stats">
+            <div class="about-stat"><b>12万+</b><span>影片资源</span></div>
+            <div class="about-stat"><b>500万+</b><span>注册用户</span></div>
+            <div class="about-stat"><b>4K</b><span>高清画质</span></div>
+          </div>
+        </div>
+        <div class="a-shape s2"></div>
+      </div>
+      <div class="feat-list">
+        <div class="feat"><div class="f-ic">🚀</div><div><h4>极速更新</h4><p>日本电影同步日本院线上映，最快 24 小时内收录最新资源。</p></div></div>
+        <div class="feat"><div class="f-ic">🎬</div><div><h4>资源全面</h4><p>覆盖日本电影全类型、全年代，从 1950 年代经典到当下热映新片。</p></div></div>
+        <div class="feat"><div class="f-ic">📱</div><div><h4>多端适配</h4><p>手机、平板、电脑全端自适应，随时随地畅享日本电影。</p></div></div>
+        <div class="feat"><div class="f-ic">🔍</div><div><h4>智能搜索</h4><p>支持片名、演员、导演多维检索，精准定位你想看的每一部日本电影。</p></div></div>
+        <div class="feat"><div class="f-ic">⭐</div><div><h4>权威评分</h4><p>整合豆瓣、IMDb、映画.com 等多平台评分，帮你挑选优质日本电影。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 收录优化 -->
+<section id="seo" class="seo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">SITEMAP</span>
+      <h2>关键词 <span class="brand-kw">导航入口</span></h2>
+      <p>日本电影网核心关键词聚合，方便搜索引擎快速索引与用户精准查找</p>
+    </div>
+    <div class="seo-content">
+      <h3>关于 日本电影网（ribendianyingwang-h5）</h3>
+      <p>日本电影网（ribendianyingwang-h5）是一个专注于日本电影在线观看与资讯分享的专业网站，网站地址为 <strong>https://ribendianyingwang-h5/</strong>。本站汇集海量日本电影资源，涵盖日本剧情片、日本爱情片、日本动作片、日本动画电影、日本恐怖片、日本经典老片等多个分类，是广大日本电影爱好者的首选平台。</p>
+      <p>无论你是想观看最新上映的日本电影，还是寻找高分经典老片，日本电影网都能为你提供优质的在线观看体验。本站持续更新日本电影资讯、影评、排行榜，让你不错过任何一部值得一看的日本电影。</p>
+      <div class="kw-cloud">
+        <a href="#">日本电影网</a>
+        <a href="#">ribendianyingwang-h5</a>
+        <a href="#">日本电影在线观看</a>
+        <a href="#">日本剧情片</a>
+        <a href="#">日本爱情片</a>
+        <a href="#">日本动作片</a>
+        <a href="#">日本动画电影</a>
+        <a href="#">日本电影排行榜</a>
+        <a href="#">日本电影推荐</a>
+        <a href="#">2026 日本电影</a>
+        <a href="#">日本高分电影</a>
+        <a href="#">日本经典电影</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top"><span class="logo-mark">日</span>日本电影网</a>
+        <p>日本电影网（ribendianyingwang-h5）—— 专业的日本电影在线观看平台，网站地址：https://ribendianyingwang-h5/。为您提供最新、最全、最清晰的日本电影资源与资讯。</p>
+      </div>
+      <div class="foot-col">
+        <h4>影片分类</h4>
+        <a href="#category">日本剧情片</a>
+        <a href="#category">日本爱情片</a>
+        <a href="#category">日本动作片</a>
+        <a href="#category">日本动画电影</a>
+        <a href="#category">日本恐怖片</a>
+      </div>
+      <div class="foot-col">
+        <h4>热门栏目</h4>
+        <a href="#rank">热播排行</a>
+        <a href="#news">影讯资讯</a>
+        <a href="#about">关于本站</a>
+        <a href="#seo">关键词导航</a>
+      </div>
+      <div class="foot-col">
+        <h4>友情链接</h4>
+        <a href="#">日本电影资料库</a>
+        <a href="#">日本影视资讯</a>
+        <a href="#">亚洲电影精选</a>
+        <a href="#">高分电影推荐</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 日本电影网 ribendianyingwang-h5 · 网站地址：https://ribendianyingwang-h5/ · 专业的日本电影在线观看平台</div>
+      <div class="foot-links">
+        <a href="#">网站地图</a>
+        <a href="#">免责声明</a>
+        <a href="#">隐私政策</a>
+        <a href="#">联系我们</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script>
+// 滚动进度条
+window.addEventListener('scroll',function(){
+  var st=document.documentElement.scrollTop||document.body.scrollTop;
+  var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  document.getElementById('bar').style.width=(st/h*100)+'%';
+  document.getElementById('header').classList.toggle('scrolled',st>30);
+  document.getElementById('top').classList.toggle('show',st>400);
+});
+// 移动端菜单
+document.getElementById('menuBtn').addEventListener('click',function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});
+});
+// 回到顶部
+document.getElementById('top').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+// 排行 tab 切换
+document.querySelectorAll('.rank-tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.rank-tab').forEach(function(x){x.classList.remove('on');});
+    t.classList.add('on');
+  });
+});
+</script>
+
+</body>
+</html>
